@@ -71,7 +71,7 @@ public class LoginUser extends Fragment {
                         }
                         else {
                             try {
-                                Users user = task.getResult().getValue(Users.class);
+                                Users user = task.getResult().getValue(Users.class); // получение данных о пользователе в класс
                                 BdLogin = user.Login1;
                                 Bdpass = user.Password1;
                                 Bdnumber = user.Brigades_number1;
@@ -79,18 +79,17 @@ public class LoginUser extends Fragment {
                                 BdLastName = user.LastName;
                             }catch (Exception ex){Toast.makeText(getActivity(), "Пользователя не существует", Toast.LENGTH_LONG).show();}
 
-                            if (login.equals(BdLogin) && password.equals(Bdpass))
+                            if (login.equals(BdLogin) && password.equals(Bdpass)) // проверка правильности логина и пароля
                             {
                                 Users userProfile = new Users(Bdnumber,BdLogin,Bdpass,BdFirstName,BdLastName);
                                 Intent intent = new Intent(getContext(), MainActivity.class);
-                                intent.putExtra(Users.class.getSimpleName(), userProfile);
+                                intent.putExtra(Users.class.getSimpleName(), userProfile); // передача данных о пользователе в главное окно
                                 startActivity(intent);
                             }
                             else
                             {
                                 Toast.makeText(getActivity(), "Неправильный логин или пароль", Toast.LENGTH_LONG).show();
                             }
-
                         }
                     }
                 });

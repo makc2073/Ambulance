@@ -2,7 +2,7 @@
     android:thickness="0dp"
     android:shape="rectangle">
     <stroke android:width="2dp"
-        android:color="@android:color/holo_green_light"/>
+        android:color="#017957"/>
     <corners android:radius="4dp" />
     <gradient
         android:startColor="#00FFFFFF"

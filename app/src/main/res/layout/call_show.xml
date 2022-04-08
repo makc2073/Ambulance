@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light">
+    android:background="#099559">
 
     <View
         android:id="@+id/view"
@@ -190,7 +190,7 @@ android:gravity="bottom"
         android:fontFamily="sans-serif-medium"
         android:gravity="center_vertical"
         android:text="TextView"
-        android:textColor="@android:color/holo_green_dark"
+        android:textColor="#017957"
         app:layout_constraintBottom_toTopOf="@+id/AdressText"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent"
@@ -218,7 +218,7 @@ android:gravity="bottom"
         android:layout_height="50dp"
         android:onClick="acceptCall"
         android:layout_marginTop="4dp"
-        android:textColor="#050505"
+        android:textColor="#FFFFFF"
         android:text="Принять вызов"
         app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/view"

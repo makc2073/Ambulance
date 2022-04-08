@@ -78,39 +78,37 @@ public class CallList extends Fragment {
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,listData);
         callsView.setAdapter(adapter);
         mDataBase = FirebaseDatabase.getInstance().getReference(CALL_KEY);
-
     }
     private void getDataFromDb(View view)
     {
         ValueEventListener vListener = new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
+            public void onDataChange(@NonNull DataSnapshot snapshot) // Метод для чтения списка вызовов
             {
-                if (listData.size() > 0) {listData.clear();}
-                if (listTemp.size() > 0) {listTemp.clear();}
-                for (DataSnapshot ds: snapshot.getChildren())
+                if (listData.size() > 0) {listData.clear();} // Очистка списка если элементов больше 0
+                if (listTemp.size() > 0) {listTemp.clear();} //
+                for (DataSnapshot ds: snapshot.getChildren())  // перебор всех данных в базе
                 {
                     TextView numb = view.findViewById(R.id.NumberBrigade);
                     number = numb.getText().toString();
                     if (number.equals("TextView")) {
-                        numb.setText(Number);
+                        numb.setText(Number); // назначение номера бригады в текстовое поле
                     }
                     else{Number = numb.getText().toString();}
 
 
-                    Calls call = ds.getValue(Calls.class);
+                    Calls call = ds.getValue(Calls.class); // получение данных о вызове
                     assert  call != null;
-                    if (call.Brigade_number.equals(Number) && !(call.Status.equals("Завершен")))
+                    if (call.Brigade_number.equals(Number) && !(call.Status.equals("Завершен"))) // отбор данных по номеру бригады и статусу
                     {
                         String a = ds.getKey();
-                        call.Key = a;
-                        listData.add(call.Adress + " | " + call.Date + " " + call.Time + " | " + call.Status);
-                        listTemp.add(call);
+                        call.Key = a; // Запись ключа текущих данных из базы
+                        listData.add(call.Adress + " | " + call.Date + " " + call.Time + " | " + call.Status); // заполнение данных  в список
+                        listTemp.add(call); // заполнение данных в список
                     }
                 }
                 adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "Ошибка базы", Toast.LENGTH_LONG).show();

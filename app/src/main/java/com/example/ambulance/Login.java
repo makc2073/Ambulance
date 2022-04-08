@@ -15,7 +15,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerView, LogFragment).commit();
         nowFragment = LogFragment;
     }
     public void login(View view)

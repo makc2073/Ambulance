@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("UserList");
-        //getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerViewMain, CallsFragment).commit();
-        //nowFragment = CallsFragment;
         getDataFromDb();
         Bundle arguments = getIntent().getExtras();
         if(arguments!=null){

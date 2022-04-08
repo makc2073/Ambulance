@@ -76,11 +76,11 @@ public class UserChat extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String key = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS").format(new Date());
+                String key = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS").format(new Date()); // назначение ключа сообщений
                 String time;
-                text = MessageText.getText().toString();
-                Message message = new Message(login, text, time = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()));
-                mDataBase.child(key).setValue(message);
+                text = MessageText.getText().toString(); // присвоение текста сообщения из поля ввода
+                Message message = new Message(login, text, time = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date())); // создание нового сообщения
+                mDataBase.child(key).setValue(message); // добавление сообщения в класс
                 MessageText.setText("");
             }
         });
@@ -93,22 +93,18 @@ public void listnerMes(View view){
         public void onDataChange(DataSnapshot dataSnapshot) {
             // Get Post object and use the values to update the UI
             if(getMes.size() > 0){getMes.clear();}
-            for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                Message mes = ds.getValue(Message.class);
+            for(DataSnapshot ds: dataSnapshot.getChildren()) { // Выбор всех сообщений из базы
+                Message mes = ds.getValue(Message.class); // заполнение сообщений в класс
                 assert mes != null;
-                getMes.add(new Message(mes.userName, mes.textMessage, mes.messageTime));
+                getMes.add(new Message(mes.userName, mes.textMessage, mes.messageTime));// начальная инициализация списка
             }
-            // начальная инициализация списка
             // получаем элемент ListView
             MessageList = view.findViewById(R.id.ListMessage);
             // создаем адаптер
-            MessageAdapter stateAdapter = new MessageAdapter(getContext(), R.layout.item_message, getMes);
+            MessageAdapter stateAdapter = new MessageAdapter(getContext(), R.layout.item_message, getMes); // Адапетр для добавления данных в спискок
             // устанавливаем адаптер
             MessageList.setAdapter(stateAdapter);
-            ;
-
         }
-
         @Override
         public void onCancelled(DatabaseError databaseError) {
 
