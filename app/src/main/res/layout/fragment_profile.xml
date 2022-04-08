@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.slideshow.UsersProfile"
+    tools:layout_editor_absoluteX="-47dp"
+    tools:layout_editor_absoluteY="0dp">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:id="@+id/ProfilLogin"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/side_nav_bar"
+        android:drawableLeft="@drawable/ic_editprofile"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ProfilFname"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_skyle"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:ems="10"
+        android:hint="Имя"
+        android:inputType="textPersonName"
+        android:padding="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilLogin" />
+
+    <EditText
+        android:id="@+id/ProfilNumber"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_skyle"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:drawableLeft="@drawable/ic_numb"
+        android:ems="10"
+        android:hint="Бригада"
+        android:inputType="textPersonName"
+        android:padding="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilLname" />
+
+    <EditText
+        android:id="@+id/ProfilLname"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_skyle"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:ems="10"
+        android:hint="Фамилия"
+        android:inputType="textPersonName"
+        android:padding="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilFname" />
+
+    <Button
+        android:id="@+id/EditBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="7dp"
+        android:text="Изменить"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
