@@ -27,6 +27,7 @@
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable-anydpi/ic_send.xml" value="0.2895" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable-v24/edit_text_skyle.xml" value="0.207" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable-v24/fragment_skyle.xml" value="0.327" />
+        <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable-v24/fragment_style.xml" value="0.324" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable-xhdpi/buttonstyle.xml" value="0.2895" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable-xhdpi/comment_text_skyle.xml" value="0.3235" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable-xhdpi/itemStyle.xml" value="0.324" />
@@ -40,7 +41,7 @@
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable/side_nav_bar.xml" value="0.2625" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/drawable/text_style.xml" value="0.327" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/layout/activity_navigate.xml" value="0.25" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/layout/app_bar_navigate.xml" value="0.18" />
         <entry key="..\:/Users/777/Desktop/Ambulance2/app/src/main/res/layout/call_show.xml" value="0.5552099533437014" />

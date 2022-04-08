@@ -20,6 +20,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
         android:text="TextView"
+        android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +31,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/edit_text_skyle"
-        android:backgroundTint="@android:color/holo_green_light"
+
         android:drawableLeft="@drawable/ic_action_name"
         android:ems="10"
         android:hint="Имя"
@@ -47,7 +48,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/edit_text_skyle"
-        android:backgroundTint="@android:color/holo_green_light"
+
         android:drawableLeft="@drawable/ic_numb"
         android:ems="10"
         android:hint="Бригада"
@@ -64,7 +65,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/edit_text_skyle"
-        android:backgroundTint="@android:color/holo_green_light"
+
         android:drawableLeft="@drawable/ic_action_name"
         android:ems="10"
         android:hint="Фамилия"

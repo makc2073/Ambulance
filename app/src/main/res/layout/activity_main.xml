@@ -37,6 +37,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:textSize="18dp"
+        android:textColor="@color/white"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -49,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="18dp"
+        android:textColor="@color/white"
         android:layout_marginTop="4dp"
         android:text="@string/nav_header_subtitle"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -57,39 +59,38 @@
     <Button
         android:id="@+id/CallsBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_style"
-        android:drawableLeft="@drawable/ic_call"
-        android:text="Вызовы"
+        android:drawableBottom="@drawable/ic_call"
         android:onClick="Calls"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/UserProfileBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_style"
-        android:drawableLeft="@drawable/ic_profile"
-        android:text="Профиль"
+        android:drawableBottom="@drawable/ic_profile"
         android:onClick="Profile"
+        android:text=""
+        app:layout_constraintEnd_toStartOf="@+id/ChatBtn"
         app:layout_constraintStart_toEndOf="@+id/CallsBtn"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/ChatBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_style"
-        android:drawableLeft="@drawable/ic_chat"
-        android:text="Чат"
+        android:drawableBottom="@drawable/ic_chat"
         android:onClick="Chat"
-        app:layout_constraintStart_toEndOf="@+id/UserProfileBtn"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <androidx.fragment.app.FragmentContainerView
