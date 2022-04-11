@@ -34,7 +34,6 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         messageUser.setText(message.getUserName()+":");
         messageText.setText(message.getTextMessage());
         messageTime.setText(message.getMessageTime());
-
         return view;
     }
 }

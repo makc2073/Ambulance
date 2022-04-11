@@ -72,12 +72,12 @@ public class CallList extends Fragment {
 
     private void init(View view)
     {
-        callsView = view.findViewById(R.id.CallsView);
-        listData = new ArrayList<>();
-        listTemp = new ArrayList<>();
-        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,listData);
+        callsView = view.findViewById(R.id.CallsView); // инициализация списка
+        listData = new ArrayList<>(); // создание списка вызовов
+        listTemp = new ArrayList<>(); // созданиие списка с полной информацией о вызовах
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,listData); //инициализация адаптера
         callsView.setAdapter(adapter);
-        mDataBase = FirebaseDatabase.getInstance().getReference(CALL_KEY);
+        mDataBase = FirebaseDatabase.getInstance().getReference(CALL_KEY); // подключение к БД
     }
     private void getDataFromDb(View view)
     {

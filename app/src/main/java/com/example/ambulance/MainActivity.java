@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         profilename = findViewById(R.id.ProfilName);
         profilename.setText("Пользователь: " + login);
         username = findViewById(R.id.HeaderName);
-
     }
     public void Calls(View view)
     {
@@ -65,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragmentContainerViewMain, CallsFragment)
                     .commit();
-
         }
         nowFragment = CallsFragment;
     }
@@ -114,12 +112,9 @@ public class MainActivity extends AppCompatActivity {
                         number = user.Brigades_number1;
                     }
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         };
         mDatabase.addValueEventListener(vListener);

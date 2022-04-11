@@ -59,7 +59,6 @@ public class RegisterUser extends Fragment {
             @Override
             public void onClick(View view)
             {
-
                 Login = LoginEd.getText().toString();
                 Password = PasswordEd.getText().toString();
                 RePassword = RePasswordEd.getText().toString();
