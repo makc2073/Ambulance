@@ -1,4 +1,4 @@
-package com.example.ambulance.ui.slideshow;
+package com.example.ambulance.ui.Profile;
 
 import android.os.Bundle;
 

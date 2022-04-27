@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
 
 
-    tools:context=".ui.gallery.UserChat">
+    tools:context=".ui.Chat.UserChat">
 
 
     <androidx.appcompat.widget.AppCompatButton

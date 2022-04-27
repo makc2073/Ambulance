@@ -1,4 +1,4 @@
-package com.example.ambulance.ui.gallery;
+package com.example.ambulance.ui.Chat;
 
 import android.os.Bundle;
 
@@ -13,15 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.ambulance.Calls;
 import com.example.ambulance.Message;
 import com.example.ambulance.MessageAdapter;
 import com.example.ambulance.R;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

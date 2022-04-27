@@ -1,10 +1,15 @@
-package com.example.ambulance.ui.home;
+package com.example.ambulance.ui.Call;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ambulance.Calls;
+import com.example.ambulance.Login;
 import com.example.ambulance.R;
 
 import com.example.ambulance.ShowCall;
@@ -24,6 +30,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -32,6 +39,9 @@ import java.util.List;
 
 public class CallList extends Fragment {
 
+    private NotificationManager notificationManager;
+    private static final int NOTIFY_ID = 1;
+    private static final String CHANNEL_ID = "CHANNEL_ID";
 
    private ListView callsView;
    private ArrayAdapter<String> adapter;
@@ -40,6 +50,9 @@ public class CallList extends Fragment {
 
    private String CALL_KEY = "Calls";
    private DatabaseReference mDataBase;
+   private String stats;
+   Query numb;
+
    String Number ="";
    String number;
 
@@ -64,6 +77,10 @@ public class CallList extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Number = getArguments().getString("Number");
+        TextView numbText= view.findViewById(R.id.NumberBrigade);
+        numbText.setText(Number);
+        mDataBase = FirebaseDatabase.getInstance().getReference(CALL_KEY);
+        numb = mDataBase.orderByChild("Brigade_number").equalTo(Number);
 
         init(view);
         getDataFromDb(view);
@@ -77,35 +94,30 @@ public class CallList extends Fragment {
         listTemp = new ArrayList<>(); // созданиие списка с полной информацией о вызовах
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1,listData); //инициализация адаптера
         callsView.setAdapter(adapter);
-        mDataBase = FirebaseDatabase.getInstance().getReference(CALL_KEY); // подключение к БД
+        // подключение к БД
     }
     private void getDataFromDb(View view)
     {
-        ValueEventListener vListener = new ValueEventListener() {
+        ValueEventListener vListener = new ValueEventListener()
+        {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) // Метод для чтения списка вызовов
             {
+
+
                 if (listData.size() > 0) {listData.clear();} // Очистка списка если элементов больше 0
                 if (listTemp.size() > 0) {listTemp.clear();} //
                 for (DataSnapshot ds: snapshot.getChildren())  // перебор всех данных в базе
                 {
-                    TextView numb = view.findViewById(R.id.NumberBrigade);
-                    number = numb.getText().toString();
-                    if (number.equals("TextView")) {
-                        numb.setText(Number); // назначение номера бригады в текстовое поле
-                    }
-                    else{Number = numb.getText().toString();}
-
-
                     Calls call = ds.getValue(Calls.class); // получение данных о вызове
                     assert  call != null;
-                    if (call.Brigade_number.equals(Number) && !(call.Status.equals("Завершен"))) // отбор данных по номеру бригады и статусу
-                    {
+                    if (!(call.Status.equals("Завершен"))) // отбор данных по статусу
+                   {
                         String a = ds.getKey();
                         call.Key = a; // Запись ключа текущих данных из базы
                         listData.add(call.Adress + " | " + call.Date + " " + call.Time + " | " + call.Status); // заполнение данных  в список
                         listTemp.add(call); // заполнение данных в список
-                    }
+                   }
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -114,9 +126,10 @@ public class CallList extends Fragment {
                 Toast.makeText(getActivity(), "Ошибка базы", Toast.LENGTH_LONG).show();
             }
         };
-        mDataBase.addValueEventListener(vListener);
+        numb.addValueEventListener(vListener);
     }
-    private  void setOnClickItem()
+
+    private  void setOnClickItem()// передача данных в другой фрагмент
     {
         callsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

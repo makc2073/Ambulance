@@ -3,27 +3,23 @@ package com.example.ambulance;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.ambulance.ui.gallery.UserChat;
-import com.example.ambulance.ui.home.CallList;
-import com.example.ambulance.ui.slideshow.UsersProfile;
+import com.example.ambulance.ui.Chat.UserChat;
+import com.example.ambulance.ui.Call.CallList;
+import com.example.ambulance.ui.Profile.UsersProfile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     Fragment CallsFragment = new CallList();
     Fragment UserProfileFragment = new UsersProfile();
     Fragment ChatFragment = new UserChat();
@@ -39,10 +35,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button exit = (Button) findViewById(R.id.BtnExit);
+        exit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
+            }
+        });
         mDatabase = FirebaseDatabase.getInstance().getReference("UserList");
         getDataFromDb();
         Bundle arguments = getIntent().getExtras();
-        if(arguments!=null){
+        if(arguments!=null)
+        {
             user = (Users) arguments.getSerializable(Users.class.getSimpleName());
             number = user.Brigades_number1;
             login= user.Login1;
@@ -107,17 +114,14 @@ public class MainActivity extends AppCompatActivity {
                     assert  user != null;
                     if (user.Login1.equals(login))
                     {
-
                         username.setText("имя: " + user.FirstName + " " + user.LastName);
                         number = user.Brigades_number1;
                     }
                 }
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         };
         mDatabase.addValueEventListener(vListener);
     }
-
 }

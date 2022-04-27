@@ -1,6 +1,7 @@
 package com.example.ambulance;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginUser extends Fragment {
+    private static final String PREFS_FILE = "Account";
+    private static final String PREF_LOGIN = "login";
+    private static final String PREF_PASS = "pass";
+    SharedPreferences settings;
 
     private String USER_KEY = "UserList";
     private DatabaseReference mDataBase;
@@ -48,11 +53,17 @@ public class LoginUser extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        settings = this.getActivity().getSharedPreferences("login", getContext().MODE_PRIVATE);
+
         EditText loginEd = (EditText) view.findViewById(R.id.LoginEdt);
         EditText passwordED = (EditText) view.findViewById(R.id.PasswordEdtText);
 
-        mDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
+        String log = settings.getString(PREF_LOGIN,"");
+        loginEd.setText(log);
+        String pass = settings.getString(PREF_PASS,"");
+        passwordED.setText(pass);
 
+        mDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
 
        Button enterBtn = (Button) view.findViewById(R.id.EnterBtn);
         enterBtn.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +95,13 @@ public class LoginUser extends Fragment {
                                 Users userProfile = new Users(Bdnumber,BdLogin,Bdpass,BdFirstName,BdLastName);
                                 Intent intent = new Intent(getContext(), MainActivity.class);
                                 intent.putExtra(Users.class.getSimpleName(), userProfile); // передача данных о пользователе в главное окно
+
+                                // сохраняем его в настройках
+                                SharedPreferences.Editor prefEditor = settings.edit();
+                                prefEditor.putString(PREF_LOGIN, login);
+                                prefEditor.putString(PREF_PASS, password);
+                                prefEditor.apply();
+
                                 startActivity(intent);
                             }
                             else
