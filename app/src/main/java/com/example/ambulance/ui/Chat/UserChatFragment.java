@@ -29,7 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class UserChat extends Fragment {
+public class UserChatFragment extends Fragment {
     String login;
     private ConstraintLayout fragment_chat;
     ArrayList<Message> getMes = new ArrayList<Message>();
@@ -38,7 +38,7 @@ public class UserChat extends Fragment {
     private DatabaseReference mDataBase;
     private List<Message> ListMes;
 
-    public UserChat() {
+    public UserChatFragment() {
         // Required empty public constructor
     }
     @Override

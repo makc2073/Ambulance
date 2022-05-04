@@ -32,12 +32,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class UsersProfile extends Fragment {
+public class UsersProfileFragment extends Fragment {
 String Number, ULogin,Password,Fname,Lname;
     EditText FnameTv,LnameTv,NumberTv;
     private DatabaseReference mDataBase;
 
-    public UsersProfile( ) {
+    public UsersProfileFragment( ) {
 
     }
     @Override

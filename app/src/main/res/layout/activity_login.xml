@@ -34,7 +34,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.ambulance.LoginUser"
+        android:name="com.example.ambulance.LoginUserFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/fragment_style"

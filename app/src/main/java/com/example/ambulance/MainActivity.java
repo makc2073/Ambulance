@@ -13,9 +13,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.ambulance.ui.Chat.UserChat;
-import com.example.ambulance.ui.Call.CallList;
-import com.example.ambulance.ui.Profile.UsersProfile;
+import com.example.ambulance.ui.Chat.UserChatFragment;
+import com.example.ambulance.ui.Call.CallListFragment;
+import com.example.ambulance.ui.Profile.UsersProfileFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,9 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
     Intent serviceIntent;
 
-    Fragment CallsFragment = new CallList();
-    Fragment UserProfileFragment = new UsersProfile();
-    Fragment ChatFragment = new UserChat();
+    Fragment CallsFragment = new CallListFragment();
+    Fragment UserProfileFragment = new UsersProfileFragment();
+    Fragment ChatFragment = new UserChatFragment();
     Fragment nowFragment;
     private DatabaseReference mDatabase;
 

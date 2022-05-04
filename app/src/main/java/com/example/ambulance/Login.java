@@ -11,8 +11,8 @@ import android.view.View;
 
 public class Login extends AppCompatActivity {
 
-    Fragment LogFragment = new LoginUser();
-    Fragment RegFragment = new RegisterUser();
+    Fragment LogFragment = new LoginUserFragment();
+    Fragment RegFragment = new RegisterUserFragment();
 
 
     Fragment nowFragment;

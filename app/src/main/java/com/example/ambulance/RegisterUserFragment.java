@@ -20,14 +20,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class RegisterUser extends Fragment {
+public class RegisterUserFragment extends Fragment {
 
     private DatabaseReference mDatabase;
     public String Login,Password,RePassword,Number, userId;
     public EditText LoginEd,PasswordEd,RePasswordEd,NumberEd;
 
 
-    public RegisterUser() {
+    public RegisterUserFragment() {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {

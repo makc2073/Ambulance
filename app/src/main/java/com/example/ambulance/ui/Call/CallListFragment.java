@@ -38,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CallList extends Fragment {
+public class CallListFragment extends Fragment {
    private ListView callsView;
    private ArrayAdapter<String> adapter;
    private List<String>  listData;
@@ -51,7 +51,7 @@ public class CallList extends Fragment {
 
 
 
-   public CallList() {
+   public CallListFragment() {
 
     }
     @Override

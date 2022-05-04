@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class LoginUser extends Fragment {
+public class LoginUserFragment extends Fragment {
     private static final String PREFS_FILE = "Account";
     private static final String PREF_LOGIN = "login";
     private static final String PREF_PASS = "pass";
@@ -33,7 +33,7 @@ public class LoginUser extends Fragment {
     public String login, password;
     public String BdLogin, Bdpass, Bdnumber, BdFirstName,BdLastName;
 
-    public LoginUser() {
+    public LoginUserFragment() {
         // Required empty public constructor
     }
 
