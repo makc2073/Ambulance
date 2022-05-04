@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ambulance.Calls;
+import com.example.ambulance.Foreground;
 import com.example.ambulance.Login;
 import com.example.ambulance.R;
 
@@ -38,11 +39,6 @@ import java.util.List;
 
 
 public class CallList extends Fragment {
-
-    private NotificationManager notificationManager;
-    private static final int NOTIFY_ID = 1;
-    private static final String CHANNEL_ID = "CHANNEL_ID";
-
    private ListView callsView;
    private ArrayAdapter<String> adapter;
    private List<String>  listData;
@@ -50,11 +46,9 @@ public class CallList extends Fragment {
 
    private String CALL_KEY = "Calls";
    private DatabaseReference mDataBase;
-   private String stats;
    Query numb;
-
    String Number ="";
-   String number;
+
 
 
    public CallList() {
@@ -71,7 +65,7 @@ public class CallList extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_calls, container, false);
 
-    }
+           }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -103,8 +97,6 @@ public class CallList extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) // Метод для чтения списка вызовов
             {
-
-
                 if (listData.size() > 0) {listData.clear();} // Очистка списка если элементов больше 0
                 if (listTemp.size() > 0) {listTemp.clear();} //
                 for (DataSnapshot ds: snapshot.getChildren())  // перебор всех данных в базе

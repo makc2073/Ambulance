@@ -1,11 +1,17 @@
 package com.example.ambulance.ui.Profile;
 
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.FocusFinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +20,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ambulance.Foreground;
+import com.example.ambulance.Login;
+import com.example.ambulance.MainActivity;
 import com.example.ambulance.R;
 import com.example.ambulance.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,9 +33,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class UsersProfile extends Fragment {
-String Number,Login,Password,Fname,Lname;
+String Number, ULogin,Password,Fname,Lname;
     EditText FnameTv,LnameTv,NumberTv;
     private DatabaseReference mDataBase;
+
     public UsersProfile( ) {
 
     }
@@ -46,9 +56,9 @@ String Number,Login,Password,Fname,Lname;
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Login = getArguments().getString("Login");
+        ULogin = getArguments().getString("Login");
         mDataBase = FirebaseDatabase.getInstance().getReference("UserList");
-        mDataBase.child(Login).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDataBase.child(ULogin).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful())
@@ -67,7 +77,7 @@ String Number,Login,Password,Fname,Lname;
                      FnameTv = view.findViewById(R.id.ProfilFname);
                      LnameTv = view.findViewById(R.id.ProfilLname);
                      NumberTv = view.findViewById(R.id.ProfilNumber);
-                    loginTv.setText(Login);
+                    loginTv.setText(ULogin);
                     FnameTv.setText(Fname);
                     LnameTv.setText(Lname);
                     NumberTv.setText(Number);
@@ -85,8 +95,22 @@ ProfilEdit.setOnClickListener(new View.OnClickListener() {
         Fname = FnameTv.getText().toString();
         Lname = LnameTv.getText().toString();
         //profilename.setText("Имя:" + Fname + " "  + Lname);
-        Users user = new Users(Number,Login,Password,Fname,Lname);
-        mDataBase.child(Login).setValue(user);
+        Users user = new Users(Number, ULogin,Password,Fname,Lname);
+       //mDataBase.child(ULogin).setValue(user);
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Сохранение настроек")
+                .setMessage("Сохранить изменения?(Приложение будет пререзапущено)")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mDataBase.child(ULogin).setValue(user);
+                        Intent mStartActivity = new Intent(getContext(), Login.class);
+                        startActivity(mStartActivity);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 });
     }

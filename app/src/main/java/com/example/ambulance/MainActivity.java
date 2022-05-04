@@ -1,9 +1,14 @@
 package com.example.ambulance;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class MainActivity extends AppCompatActivity {
+    Intent serviceIntent;
 
     Fragment CallsFragment = new CallList();
     Fragment UserProfileFragment = new UsersProfile();
@@ -26,14 +32,19 @@ public class MainActivity extends AppCompatActivity {
     Fragment nowFragment;
     private DatabaseReference mDatabase;
 
+
+
     Users user = new Users();
     String login, number, password, fname,lname;
     TextView profilename, username;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         Button exit = (Button) findViewById(R.id.BtnExit);
         exit.setOnClickListener(new View.OnClickListener()
@@ -43,8 +54,10 @@ public class MainActivity extends AppCompatActivity {
             {
                 Intent intent = new Intent(MainActivity.this, Login.class);
                 startActivity(intent);
+                stopService(serviceIntent);
             }
         });
+
         mDatabase = FirebaseDatabase.getInstance().getReference("UserList");
         getDataFromDb();
         Bundle arguments = getIntent().getExtras();
@@ -60,7 +73,25 @@ public class MainActivity extends AppCompatActivity {
         profilename = findViewById(R.id.ProfilName);
         profilename.setText("Пользователь: " + login);
         username = findViewById(R.id.HeaderName);
+  //Запуск уведомлений
+
+
+             serviceIntent = new Intent(MainActivity.this, Foreground.class);
+             serviceIntent.putExtra("number", number);
+             startForegroundService(serviceIntent);
+
     }
+    public  boolean foregraudServiceRunning()
+    {
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for(ActivityManager.RunningServiceInfo service: activityManager.getRunningServices(Integer.MAX_VALUE))
+        {
+            if (Foreground.class.getName().equals(service.service.getClassName()))
+            {
+                return true;
+            }
+        }
+        return false;    }
     public void Calls(View view)
     {
         if (nowFragment != CallsFragment)
