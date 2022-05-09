@@ -71,11 +71,11 @@ public class UserChatFragment extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String key = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS").format(new Date()); // назначение ключа сообщений
+                String key = new SimpleDateFormat("dd-MM-yyyy-MM-dd HH:mm:ss:SSS").format(new Date()); // назначение ключа сообщений
                 String time;
                 text = MessageText.getText().toString(); // присвоение текста сообщения из поля ввода
                 Message message = new Message(login, text, time = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date())); // создание нового сообщения
-                mDataBase.child(key).setValue(message); // добавление сообщения в класс
+                mDataBase.push().setValue(message); // добавление сообщения в класс
                 MessageText.setText("");
             }
         });

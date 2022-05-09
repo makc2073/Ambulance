@@ -5,7 +5,7 @@ public class Users implements Serializable {
 
     public Users() {
     }
-
+// метод который принимает  и возвращает значения при создании экземпляра класса
     public Users(String brigades_number1, String login1, String password1, String firstName, String lastName) {
         Brigades_number1 = brigades_number1;
         Login1 = login1;

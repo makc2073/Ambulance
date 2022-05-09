@@ -74,7 +74,7 @@ public class CallListFragment extends Fragment {
         TextView numbText= view.findViewById(R.id.NumberBrigade);
         numbText.setText(Number);
         mDataBase = FirebaseDatabase.getInstance().getReference(CALL_KEY);
-        numb = mDataBase.orderByChild("Brigade_number").equalTo(Number);
+        numb = mDataBase.orderByChild("Brigade_number").equalTo(Number); // выборка данных только с соответсвующим номером бригады
 
         init(view);
         getDataFromDb(view);
@@ -90,7 +90,7 @@ public class CallListFragment extends Fragment {
         callsView.setAdapter(adapter);
         // подключение к БД
     }
-    private void getDataFromDb(View view)
+    private void getDataFromDb(View view) // метод-слушатель, который выбирает данные из базы при изменении или добавлении новых записей
     {
         ValueEventListener vListener = new ValueEventListener()
         {
@@ -118,7 +118,7 @@ public class CallListFragment extends Fragment {
                 Toast.makeText(getActivity(), "Ошибка базы", Toast.LENGTH_LONG).show();
             }
         };
-        numb.addValueEventListener(vListener);
+        numb.addValueEventListener(vListener); // выборка данных только с соответсвующим номером бригады
     }
 
     private  void setOnClickItem()// передача данных в другой фрагмент

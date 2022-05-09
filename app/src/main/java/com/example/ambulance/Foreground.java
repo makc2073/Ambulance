@@ -32,24 +32,21 @@ public class Foreground  extends Service {
     Query brigade;
     MediaPlayer sound;
     String number;
-    Calls call;
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId)
+    public int onStartCommand(Intent intent, int flags, int startId) // метод который запучкает работу сервиса
     {
-        Log.e("Service","Start...");
-
-        new Thread(
+        Log.e("Service","Start..."); // сообщении о старте работы сервиса
+        new Thread( // запуск работы потока
                 new Runnable() {
                     @Override
                     public void run() {
-                        number = intent.getStringExtra("number");
-                        mDataBase = FirebaseDatabase.getInstance().getReference(CALL_KEY);
-                        brigade = mDataBase.orderByChild("Brigade_number").equalTo(number);
+                        number = intent.getStringExtra("number"); // получения номера бриагады
+                        mDataBase = FirebaseDatabase.getInstance().getReference(CALL_KEY);// получение ссылки базы данных с вызовами
+                        brigade = mDataBase.orderByChild("Brigade_number").equalTo(number); // выборка по номеру бригады
                         getDataFromDb();
-                        NotificationChannel channel = new NotificationChannel(
+                        NotificationChannel channel = new NotificationChannel( // создание уведомления который сообщает о работе уведомлений и указывет номер бригады
                                 CHANNEL_ID,
                                 CHANNEL_ID,
                                 NotificationManager.IMPORTANCE_MIN);
@@ -76,10 +73,10 @@ public class Foreground  extends Service {
        ChildEventListener childEventListener = new ChildEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) { // метод который срабатывает при добваление вызова
 
-                sound = MediaPlayer.create(Foreground.this, R.raw.notify);
-                Log.e("Service", "BD... Добавление");
+                sound = MediaPlayer.create(Foreground.this, R.raw.notify);// звук уведомления
+                Log.e("Service", "BD... Добавление"); // сообщении о срабатывании
                 NotificationCompat.Builder builder =
                         new NotificationCompat.Builder(Foreground.this, CHANNEL_ID)
                                 .setSmallIcon(R.drawable.ic_call)
@@ -87,8 +84,8 @@ public class Foreground  extends Service {
                                 .setPriority(NotificationCompat.PRIORITY_HIGH).setAutoCancel(true);
                 NotificationManagerCompat notificationManager =
                         NotificationManagerCompat.from(Foreground.this);
-                notificationManager.notify(101, builder.build());
-                sound.start();
+                notificationManager.notify(101, builder.build()); // создание уведомления о вызове котоырй был добавлен
+                sound.start(); // запуск звука
             }
 
            @RequiresApi(api = Build.VERSION_CODES.O)
